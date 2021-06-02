@@ -1,0 +1,762 @@
+[
+    {
+        "Name": "AdGuard (Default)",
+        "Website": "https://adguard.com",
+        "DNS": [
+            "94.140.14.14",
+            "2a10:50c0::ad1:ff",
+            "94.140.15.15",
+            "2a10:50c0::ad2:ff"
+        ],
+        "Filters": true,
+        "Notes": "blocks ads, enforces safe search"
+    },
+    {
+        "Name": "AdGuard (Family Protection)",
+        "Website": "https://adguard.com",
+        "DNS": [
+            "94.140.14.15",
+            "2a10:50c0::bad1:ff",
+            "94.140.15.16",
+            "2a10:50c0::bad2:ff"
+        ],
+        "Filters": true,
+        "Notes": "blocks ads, enforces safe search, "
+    },
+    {
+        "Name": "AdGuard (Non-Filtering)",
+        "Website": "https://adguard.com",
+        "Filters": false,
+        "DNS": [
+            "94.140.14.140",
+            "2a10:50c0::1:ff",
+            "94.140.14.141",
+            "2a10:50c0::2:ff"
+        ]
+    },
+    {
+        "Name": "Cloudflare",
+        "Website": "https://1.1.1.1/dns/",
+        "Filters": false,
+        "DNS": [
+            "1.1.1.1",
+            "2606:4700:4700::1111",
+            "1.0.0.1",
+            "2606:4700:4700::1001"
+        ]
+    },
+    {
+        "Name": "Comodo (Secure DNS)",
+        "Website": "https://www.comodo.com/secure-dns/",
+        "Filters": true,
+        "DNS": [
+            "8.26.56.26",
+            "8.20.247.20"
+        ]
+    },
+    {
+        "Name": "Comodo (Secure Internet Gateway)",
+        "Website": "https://www.comodo.com/secure-dns/",
+        "Filters": true,
+        "DNS": [
+            "8.26.56.10",
+            "8.20.247.10"
+        ]
+    },
+    {
+        "Name": "Google",
+        "Website": "https://developers.google.com/speed/public-dns/",
+        "Filters": false,
+        "DNS": [
+            "8.8.8.8",
+            "8.8.4.4",
+            "2001:4860:4860::8888",
+            "2001:4860:4860::8844"
+        ],
+        "DOT": [
+            {
+                "name": "dns.google",
+                "port": 853,
+                "IP": [
+                    "8.8.8.8",
+                    "8.8.4.4",
+                    "2001:4860:4860::8888",
+                    "2001:4860:4860::8844"
+                ]
+            }
+        ],
+        "DOH": [
+            "https://dns.google/dns-query"
+        ]
+    },
+    {
+        "Name": "OpenDNS",
+        "Website": "https://support.opendns.com",
+        "DNS": [
+            "208.67.222.222",
+            "208.67.220.220",
+            "208.67.222.220",
+            "208.67.220.222"
+        ],
+        "DOH": [
+            "https://doh.opendns.com/dns-query"
+        ]
+    },
+    {
+        "Name": "OpenDNS (FamilyShield)",
+        "Website": "https://support.opendns.com/hc/en-us/articles/360038086532-Using-DNS-over-HTTPS-DoH-with-OpenDNS",
+        "Filters": true,
+        "DNS": [
+            "208.67.222.123",
+            "208.67.220.123"
+        ],
+        "DOH": [
+            "https://doh.familyshield.opendns.com/dns-query"
+        ]
+    },
+    {
+        "Name": "Quad9 (Secured)",
+        "Website": "https://www.quad9.net/service/service-addresses-and-features/#ip",
+        "Notes": "Malware blocking, DNSSEC validation",
+        "Filters": true,
+        "DNS": [
+            "9.9.9.9",
+            "149.112.112.112",
+            "2620:fe::fe",
+            "2620:fe::9"
+        ],
+        "DOT": [
+            {
+                "name": "dns.quad9.net",
+                "port": 853,
+                "IP": [
+                    "9.9.9.9",
+                    "149.112.112.112",
+                    "2620:fe::fe",
+                    "2620:fe::9"
+                ]
+            }
+        ],
+        "DOH": [
+            "https://dns.quad9.net/dns-query"
+        ]
+    },
+    {
+        "Name": "Quad9 (Secured w/ECS)",
+        "Website": "https://www.quad9.net/service/service-addresses-and-features/#ip",
+        "Filters": true,
+        "DNS": [
+            "9.9.9.11",
+            "149.112.112.11",
+            "2620:fe::11",
+            "2620:fe::fe:11"
+        ],
+        "DOT": [
+            {
+                "name": "dns11.quad9.net",
+                "port": 853,
+                "IP": [
+                    "9.9.9.11",
+                    "149.112.112.11",
+                    "2620:fe::11",
+                    "2620:fe::fe:11"
+                ]
+            }
+        ],
+        "DOH": [
+            "https://dns11.quad9.net/dns-query"
+        ]
+    },
+    {
+        "Name": "Quad9 (Unsecured)",
+        "Website": "https://www.quad9.net/service/service-addresses-and-features/#ip",
+        "Filters": false,
+        "DNS": [
+            "9.9.9.10",
+            "149.112.112.10",
+            "2620:fe::10",
+            "2620:fe::fe:10"
+        ],
+        "DOT": [
+            {
+                "name": "dns10.quad9.net",
+                "port": 853,
+                "IP": [
+                    "9.9.9.10",
+                    "149.112.112.10",
+                    "2620:fe::10",
+                    "2620:fe::fe:10"
+                ]
+            }
+        ],
+        "DOH": [
+            "https://dns10.quad9.net/dns-query"
+        ]
+    },
+    {
+        "Name": "CleanBrowsing (Family Filter)",
+        "Website": "https://cleanbrowsing.org/filters",
+        "DNS": [
+            "185.228.168.168",
+            "185.228.169.168",
+            "2a0d:2a00:1::",
+            "2a0d:2a00:2::"
+        ],
+        "DOT": [
+            {
+                "name": "family-filter-dns.cleanbrowsing.org",
+                "port": 853,
+                "IP": [
+                    ""
+                ]
+            }
+        ],
+        "DOH": [
+            "https://doh.cleanbrowsing.org/doh/family-filter/"
+        ]
+    },
+    {
+        "Name": "CleanBrowsing (Adult Filter)",
+        "Website": "https://cleanbrowsing.org/filters",
+        "DNS": [
+            "185.228.168.10",
+            "185.228.169.11",
+            "2a0d:2a00:1::1",
+            "2a0d:2a00:2::1"
+        ],
+        "DOT": [
+            {
+                "name": "adult-filter-dns.cleanbrowsing.org",
+                "port": 853,
+                "IP": [
+                    "185.228.168.10",
+                    "185.228.169.11",
+                    "2a0d:2a00:1::1",
+                    "2a0d:2a00:2::1"
+                ]
+            }
+        ],
+        "DOH": [
+            "https://doh.cleanbrowsing.org/doh/adult-filter/"
+        ]
+    },
+    {
+        "Name": "CleanBrowsing (Security Filter)",
+        "Website": "https://cleanbrowsing.org/filters",
+        "DNS": [
+            "185.228.168.9",
+            "185.228.169.9",
+            "2a0d:2a00:1::2",
+            "2a0d:2a00:2::2"
+        ],
+        "DOT": [
+            {
+                "name": "security-filter-dns.cleanbrowsing.org",
+                "port": 853,
+                "IP": [
+                    "185.228.168.9",
+                    "185.228.169.9",
+                    "2a0d:2a00:1::2",
+                    "2a0d:2a00:2::2"
+                ]
+            }
+        ],
+        "DOH": [
+            "https://doh.cleanbrowsing.org/doh/security-filter/"
+        ]
+    },
+    {
+        "Name": "Digital Courage",
+        "Website": "https://digitalcourage.de",
+        "DOT": [
+            {
+                "name": "dns3.digitalcourage.de",
+                "port": 853,
+                "IP": [
+                    "59.164.112"
+                ],
+                "key": {
+                    "SPKI": "2WFzfO2/56HpeR+v/l25NPf5dacfxLrudH5yZbWCfdo="
+                }
+            }
+        ]
+    },
+    {
+        "Name": "Digitale Gesellschaft (Digital Soceity Switzerland)",
+        "Website": "https://www.digitale-gesellschaft.ch/",
+        "DOT": [
+            {
+                "name": "dns.digitale-gesellschaft.ch",
+                "port": 853,
+                "IP": [
+                    "2a05:fc84::42",
+                    "2a05:fc84::43",
+                    "185.95.218.42",
+                    "185.95.218.43"
+                ]
+            }
+        ],
+        "DOH": [
+            "https://dns.digitale-gesellschaft.ch/dns-query"
+        ]
+    },
+    {
+        "Name": "Dismail.de",
+        "Website": "https://dismail.de",
+        "DNS": [
+            "159.69.114.156",
+            "80.241.218.68",
+            "2a01:4f8:c17:739a::2",
+            "2a02:c205:3001:4558::1"
+        ],
+        "DOT": [
+            {
+                "name": "fdns2.dismail.de",
+                "port": 853,
+                "IP": [
+                    "159.69.114.157",
+                    "2a01:4f8:c17:739a::2"
+                ],
+                "key": {
+                    "SPKI": "yJYDim2Wb6tbxUB3yA5ElU/FsRZZhyMXye8sXhKEd1w="
+                }
+            },
+            {
+                "name": "fdns1.dismail.de",
+                "port": 853,
+                "IP": [
+                    "80.241.218.68",
+                    "2a02:c205:3001:4558::1"
+                ],
+                "key": {
+                    "SPKI": "MMi3E2HZr5A5GL+badqe3tzEPCB00+OmApZqJakbqUU="
+                }
+            }
+        ]
+    },
+    {
+        "Name": "DnsForge.de",
+        "Website": "https://dnsforge.de",
+        "DNS": [
+            "176.9.1.117",
+            "176.9.93.198",
+            "2a01:4f8:141:316d::117",
+            "2a01:4f8:151:34aa::198"
+        ],
+        "DOT": [
+            {
+                "name": "dnsforge.de",
+                "port": 853,
+                "IP": [
+                    "176.9.1.117",
+                    "176.9.93.198",
+                    "2a01:4f8:141:316d::117",
+                    "2a01:4f8:151:34aa::198"
+                ],
+                "key": {
+                    "SPKI": "m51QwAhzNDSa3G7c1Y6eOEsskzp6ySzeOqy0LKcptDw="
+                }
+            }
+        ],
+        "DOH": [
+            "https://dnsforge.de/dns-query"
+        ]
+    },
+    {
+        "Name": "UncensoredDNS",
+        "Website": "https://blog.uncensoreddns.org/dns-servers/",
+        "DNS": [
+            "91.239.100.100",
+            "2001:67c:28a4::",
+            "89.233.43.71",
+            "2a01:3a0:53:53::",
+            "130.225.244.166",
+            "2001:878:0:e000:82:e1:f4:a6",
+            "130.226.161.34",
+            "2001:878:0:e000:82:e2:a1:22",
+            "185.38.27.139",
+            "2a00:fbe0:1:3802::3",
+            "198.180.150.12",
+            "2001:418:8006::12",
+            "89.233.43.71",
+            "2a01:3a0:53:53::"
+        ],
+        "DOT": [
+            {
+                "name": "deic-lgb.anycast.censurfridns.dk",
+                "port": 853,
+                "IP": [
+                    "130.225.244.166",
+                    "2001:878:0:e000:82:e1:f4:a6"
+                ],
+                "key": {
+                    "public key RSA": "MIICIjANBgkqhkiG9w0BAQEFAAOCAg8AMIICCgKCAgEA5llrzIwmRk+A9qINr3Ow11A0/wozr6tZG/eVL376vRBMwaz4/AW1RRR6I6RIpAMib4bxi/AGeDdNXjW8Bpoy4s0y6ePv0BPH/HUFGWIrhtpP1fjc0HHfztRkU8jlqf7c9X7EGUjWzEQWN2aFsV131NmFEdiHovC5sAnCVznXxftYdSacaWhzf8X6RDXVGynOqDUJR5238TXRieuKS2vM8FXPpH6bTE6LqvCpaZzQM0RW2tF8A/WcqQOCpjZHI4scZaAVERzHr0O97bon4RuAUj8QV+Is7m5n02eS9fWs1yhlK3ULLTbbXjkFBbXcUos83DTE5/indp01euARQwDMOhgIxeQS/AmgtVY8JIA202wR9CMWvIQkEwOdH145keNDveoBhPEihnd0bVl22zycAblSA3M481w8BwMu6wsuhiXbtHlTK+C9Z9QxTxTVV3heaLcBvvZZhxSvIG+NT8QClScDuu/Vc1lssPd2wIQBuAHm9MWCcVq+1rJxjAStU6LtT1BdSDU+30J3TEfWJG6fGgfQHBgj3yfGxN+7I49leGGcOlGR1MlFs7XHMlQ5TSOXHVAlXBuqt95xvGG61h6dN79qFs1bbaT1fMG7Aol695mKGVBKB62OB5lHbJPeZRhPCva7N1UFtTmEdtU1p0ya5lRtROahy0EtnSj9tZaeIjUCAwEAAQ==",
+                    "public key ECDSA": "MHYwEAYHKoZIzj0CAQYFK4EEACIDYgAECBcDRpeC/OaFzXzx57kHJ/WCn+fv+ctaA3CIW676D5y5/Y2/hBHMuotn9zGnax40pbdlR+4hwUMA1/6gLy6m4NnFU5LexcvUqr1T9LpeQroR/xdNyRRe4xWv00GRcG8F"
+                }
+            },
+            {
+                "name": "deic-ore.anycast.censurfridns.dk",
+                "port": 853,
+                "IP": [
+                    "130.226.161.34",
+                    "2001:878:0:e000:82:e2:a1:22"
+                ],
+                "key": {
+                    "public key RSA": "MIICIjANBgkqhkiG9w0BAQEFAAOCAg8AMIICCgKCAgEA85Hkb173I4sdw9e7KNOahUIbMHrTC0OWcQQt+TB719qH9wELDfja4YVviKdrV5MdouDms4qWuCCHKFropaG1yIZOqf+6VhY2g7WyQyRDVmD5dFZUTyz2WLjO1KkpcmHNUc3H4cBX6fk7xLRKPLba5KlN2HF9zwqL4oMXsJNTuNyFgaRDaiZBPAXDLdUCGz4LZuXbp901Isw/5eM3nFEi1NeM1j8qWuy8dy1VaG9kl4+/2ooDpXZImna4EgmnhNaAnHmpyFY0550lmSywhwv61grzQGpJOyumJMrZZeSRqfKYhdv/OXcJjnhUP14prb3EGQb96wVgERBH37YZb2Gvscel6rcMiKmVHVX5dczNan6YzlGEisNUWeoE2K8m4obh093tBzsG3lRj9IT68VQpY+o9CJEGz7iskp/8GG912YtLnVGxBVUSBJ+OfKY7mZwlp45Uz9t917Uwqslota6ugQqqbl90wjC+J8kdPNdAZx8JylsIjwL97GoEjHnN/EFlONzEbb1bk1FoLB+xqFQl24/zA1Vge6UvB4XtU5bkKrbG5O8y5vhbs3KxvC7J0CyeH9DAfhDeU7qumTqBWjAxNPXPM9QyXdJTDmUIdBP1UnuLSEg24wvHFWGocwvYqWpDa4GLZsOMYbmsmRz+2WlqTVW/u8L/N9LH1Mr4KD0DUh0CAwEAAQ==",
+                    "public key ECDSA": "MHYwEAYHKoZIzj0CAQYFK4EEACIDYgAEsNhB2+xO6x2TK2YT+olBKdzZKhdXBDUrDB+caCmDa+Dl5vSmncGo7juXbAZI6zqy3h8TbbUo/jwU8DP+hBx2pzlUFfm1BuWYi1TC+o2WRX1ZTZujheRLd7n1FqDUb+zX"
+                }
+            },
+            {
+                "name": "kracon.anycast.censurfridns.dk",
+                "port": 853,
+                "IP": [
+                    "185.38.27.139",
+                    "2a00:fbe0:1:3802::3"
+                ],
+                "key": {
+                    "public key RSA": "MIICIjANBgkqhkiG9w0BAQEFAAOCAg8AMIICCgKCAgEAsFNB0mxlukRa5zB3PzmQUFT65fPADjXQpHBQVbGgNYPvJn7Uz8UIckgcb2N6hVAQyarvRqbPG80x6D00iW/OjhD0DQXlNf5rDl9pV4bgl3U4tznIe0M6lGAd6e+UJYHAebbrxbYyu5TBIWdjSLeV4hXr8pjgH46xOE/M8A00le/+Z5uypf5+0uvYPq7pjHe0RQRadPuIvCBnYuaG8r0SQBygA+cyYwPKazVJH3PkEvJj02slCJvn+3zew4NWPaNFLD9kdAyJ/zzNQCbsBqbH7QY3/3b+sTMQL6hKB0Kzbca+wwaCqGxzJNEgaQHy+TtZ2mjS1w2l9/xWDZT0hmCrffS1Sfy/ZOarBuLGbowDwF4D9f9F1hbVpv0+NdGkgoIW0uq3HQ6l7BgmH6S+HreX1c95DfNRUPBj47cx+0jC8mK+71r6rUVoK8zaIR6G0ylauLqyI6saJNzNrZxqlCNVZQcx2v6y+z92vvFVM8qBEPCfM4ICUzbqzGIfgbczPnSuV38R2JI5FJZrPI55tFv5/OegsgWJPYFQHzh0t9GQcpp7R3A++WJH3DlxYy2oPlG5MNz2vp4y5aCBxIj/7hnriMg3UFGCdM4yWQNuXQRVGROi02Ad3YgBspfZs13AXDYrZFKv82orI448HoACD1OFlGqNhXiWteL1QBXQz9Z/EdkCAwEAAQ==",
+                    "public key ECDSA": "MHYwEAYHKoZIzj0CAQYFK4EEACIDYgAErOP1xci/danOOH65Du7o1GBXi7kdUFTiUaNb/cUDVxgGUn9QGk0V05E9Vr2CdMfH665NCJF53yt7N+XBqHCCqJTpUaBLczcEQVQSEsR1FpjtTFiIxsVscQljSER+q6GL"
+                }
+            },
+            {
+                "name": "rgnet-iad.anycast.censurfridns.dk",
+                "port": 853,
+                "IP": [
+                    "198.180.150.12",
+                    "2001:418:8006::12"
+                ],
+                "key": {
+                    "public key RSA": "MIICIjANBgkqhkiG9w0BAQEFAAOCAg8AMIICCgKCAgEAxcNzM5uxAnj+0MmxGNumb1BqEYhkUos/4qwxdyHtnYuFxOLSVCr6fQU/g4Jw5gXtM2D+Ws2i2mWtOVUTnzz+4WIiYW9aIqKFg8F/B8ct7CeWCF7h/bY362iFLVv5qVvjrQLOQrDzD2fpNWELPJoVJLcYP1kPU4E7Q5I0BKNWwu9VgkDEZx2rQR3FBs8RAkrYCdxhuhWzevKyjduDn5SDB3F71EB17ufOCwvQVTQ47yltGAuykK74BmE4CGNUnjjdgQ9Gld27py3laz7M7SSthapV87VbiCb9B75W8YfGjxB3xQLIGXmRiHFEspUkrF0ENRkm7LbXp6iDsVDExNauDgyFz0WS0AGBFIYxR5B2vOudqs2yTyPDRogl0Qt/yI235zYgCf6g3MwMhsxVcGzlWbAUpJ99p6//3jlOj+VAVTRsN35AQ8tlSuO+/dVyf/AkHkXaYNH35t5TXfWj0QkRs7whrMSlqjDuBJatx5nPA0O6XcrZbfD337X7Fwt6jqesDiByUwyCBFCIGXKm4DVZZDPoPskpW7CkkNqTKoz6fdsOAIzwG+kkJS89miy5QWNt3FxhxcQEJiv+7yrMsvI4GlOtTHqM1F/4PWV87h3WOiRU8dgc1bW7q6DkoXQEv1viKuvQExyRCdAjgDhyDpo03KRYwKBLXBXd3OHXY982PI8CAwEAAQ==",
+                    "public key ECDSA": "MHYwEAYHKoZIzj0CAQYFK4EEACIDYgAEKbYM1dFl681svIklK4n0kmqV96DEUXUu/mUSIbr4SNbvIGmQS0U7t/dSPxDJgsp04mQHNzgTzhJbicWJmbVqk12pO/JZFZV03lTpq38pvqceYPa25cqAq5CYgGiWeUSD"
+                }
+            },
+            {
+                "name": "unicast.censurfridns.dk",
+                "port": 853,
+                "IP": [
+                    "89.233.43.71",
+                    "2a01:3a0:53:53::"
+                ],
+                "key": {
+                    "public key RSA": "MIICIjANBgkqhkiG9w0BAQEFAAOCAg8AMIICCgKCAgEAxfat3dvCROaxwO1Ec40W1T8I2jOEJNZfNrCwagXRC9zVcVtZN9H8I6QqsWQDGkLmxz51NcgL+zeRI118dV+O+uWd7w6i2nyjH43s7HRPqcbRSu1wSx6/m351K0EesQ3o0Cy0sqUwQ+t2CwXdboDEt3pX1RfcnBC4O5qGKhDuldEqhYos0uIxzHnMm4OR546QRWZN8CJS/rwXur32WnuA77oG51KAK/8+jXmpYBMSOFpQgQd2bm3jp9UiB8Iz9n4fYuJ5ebWsZuIlOU+3Lf+z4D7Q8PjqnoN5wg9gROBYrQeYb30mjEAh9ZTgU7ev2dIf51s2Crc2gJUSBuOGccTVjn9sokZ+4CbKoJgKk3Xf0YLGiLtA+h11VKR6I2cco1H3EQbXpaM6BtraJueUg7zAQvLSaZkAW+IY7fwWUdZUMVQkW8s7SZB2ZT2EKjIpxkVsrkv2+NHF4R6CAvMf8ubYB5XZB0OUrdjDMGU73CRYQnaFv0dMdJCHxzy80pu5pZtwUF0yuITJ8DKfxjtPw5NWVCVWtFQhhLpOcsOcfk8+zvyb2KB8Js6bd9Qc5ShxgZSXn2hicfdmPCMLZbAG3tRxdwHVHE5heceFsMAeckq+nRf7UJLMIm9wMjoH1/6dw23PjQVfRa+sC3Ntkzee68uDhOH7jNkr4hOHYBzsuiJWXhsCAwEAAQ==",
+                    "public key ECDSA": "MHYwEAYHKoZIzj0CAQYFK4EEACIDYgAEkCMVe3bBUpgKecLOPWfe62eivwwQ1t6CpXjH0L8sC3XrrsJYmjIuWuy+g4beaDhQyI5sM/3R2wIDswuWW4qiVUyP/PU767BwTd8FE0gf+mV90PFHVmGcdabPtAngFADZ"
+                }
+            }
+        ],
+        "DOH": [
+            "https://anycast.uncensoreddns.org/dns-query",
+            "https://unicast.uncensoreddns.org/dns-query"
+        ]
+    },
+    {
+        "Name": "dns.sb",
+        "Website": "https://dns.sb",
+        "DNS": [
+            "185.222.222.222",
+            "2a09::",
+            "185.184.222.222",
+            "2a09::1"
+        ],
+        "DOT": [
+            {
+                "name": "dot.sb",
+                "port": 853,
+                "IP": [
+                    "185.222.222.222",
+                    "2a09::"
+                ]
+            }
+        ],
+        "DOH": [
+            "https://doh.dns.sb/dns-query"
+        ]
+    },
+    {
+        "Name": "Hurricane Electric",
+        "Website": "https://dns.he.net/",
+        "DNS": [
+            "74.82.42.42",
+            "2001:470:20::2",
+            "66.220.12.174",
+            "2001:470:0:149::2"
+        ]
+    },
+    {
+        "Name": "Lightning Wire Labs",
+        "Website": "https://dns.lightningwirelabs.com/knowledge-base/specs/name-servers",
+        "DNS": [
+            "81.3.27.54",
+            "2001:678:b28::54"
+        ]
+    },
+    {
+        "Name": "puntCat",
+        "Website": "http://servidordenoms.cat",
+        "DNS": [
+            "109.69.8.51",
+            "2a00:1508:0:4::9"
+        ]
+    },
+    {
+        "Name": "French Data Network (FDN)",
+        "Website": "https://www.fdn.fr/actions/dns/",
+        "DNS": [
+            "80.67.169.12",
+            "2001:910:800::12",
+            "80.67.169.40",
+            "2001:910:800::40"
+        ]
+    },
+    {
+        "Name": "Freenom World",
+        "Website": "https://www.freenom.world/en/index.html",
+        "DNS": [
+            "80.80.80.80",
+            "80.80.81.81"
+        ]
+    },
+    {
+        "Name": "CyberGhost",
+        "Website": "https://support.cyberghostvpn.com/hc/en-us/articles/214480265-CyberGhost-name-server-addresses-DNS-",
+        "DNS": [
+            "194.187.251.67"
+        ]
+    },
+    {
+        "Name": "Comcast/Xfinity",
+        "Website": "",
+        "DNS": [
+            "75.75.75.75",
+            "75.75.76.76",
+            "96.113.151.145"
+        ]
+    },
+    {
+        "Name": "Neustar DNS Advantage",
+        "Website": "",
+        "DNS": [
+            "156.154.70.1",
+            "156.154.71.1"
+        ]
+    },
+    {
+        "Name": "Sprintlink General DNS",
+        "Website": "",
+        "DNS": [
+            "204.117.214.10",
+            "199.2.252.10",
+            "204.97.212.10"
+        ]
+    },
+    {
+        "Name": "Verisign",
+        "Website": "",
+        "DNS": [
+            "64.6.64.6",
+            "64.6.65.6"
+        ]
+    },
+    {
+        "Name": "Freifunk München e.V.",
+        "Website": "https://ffmuc.net/wiki/doku.php?id=knb:dohdot",
+        "DNS": [
+            "5.1.66.255",
+            "185.150.99.255",
+            "2001:678:e68:f000::",
+            "2001:678:ed0:f000::",
+            "5.1.66.255",
+            "185.150.99.255",
+            "2001:678:e68:f000::",
+            "2001:678:ed0:f000::"
+        ],
+        "DOT": [
+            {
+                "name": "dot.ffmuc.net",
+                "port": 853,
+                "IP": [
+                    "5.1.66.255",
+                    "185.150.99.255",
+                    "2001:678:e68:f000::",
+                    "2001:678:ed0:f000::"
+                ]
+            }
+        ],
+        "DOH": [
+            "https://doh.ffmuc.net/dns-query"
+        ]
+    },
+    {
+        "Name": "Securolytics",
+        "Website": "",
+        "DNS": [
+            "144.217.51.168",
+            "144.217.146.234"
+        ]
+    },
+    {
+        "Name": "NextDNS",
+        "Website": "https://my.nextdns.io",
+        "DNS": [
+            "45.90.28.90",
+            "45.90.30.90"
+        ]
+    },
+    {
+        "Name": "Foundation for Applied Privacy",
+        "Website": "https://applied-privacy.net/services/dns/",
+        "DNS": [
+            "146.255.56.98",
+            "2a01:4f8:c0c:83ed::1"
+        ],
+        "DOT": [
+            {
+                "name": "dot1.appliced-privacy.net",
+                "port": 853,
+                "IP": [
+                    "146.255.56.98",
+                    "2a02:1b8:10:234::2"
+                ]
+            }
+        ],
+        "DOH": [
+            "https://doh.applied-privacy.net/query"
+        ]
+    },
+    {
+        "Name": "CMRG",
+        "Website": "https://dns.cmrg.net/",
+        "DOT": [
+            {
+                "name": "dns.cmrg.net",
+                "port": 853,
+                "IP": [
+                    "199.58.81.218",
+                    "2001:470:1c:76d::53"
+                ]
+            }
+        ]
+    },
+    {
+        "Name": "Post-Factum",
+        "Website": "https://dns.post-factum.tk/",
+        "DNS": [
+            "140.238.215.192",
+            ""
+        ],
+        "DOT": [
+            {
+                "name": "dot.post-factum.tk",
+                "port": 853,
+                "IP": [
+                    "140.238.215.192"
+                ]
+            }
+        ],
+        "DOH": [
+            "https://doh.post-factum.tk:53/dns-query"
+        ]
+    },
+    {
+        "Name": "Snopyta",
+        "Website": "https://snopyta.org/service/dns/",
+        "DOT": [
+            {
+                "name": "fi.dot.dns.snopyta.org",
+                "port": 853,
+                "IP": [
+                    "95.216.24.230",
+                    "2a01:4f9:2a:1919::9301"
+                ]
+            }
+        ],
+        "DOH": [
+            "https://fi.doh.dns.snopyta.org/dns-query"
+        ]
+    },
+    {
+        "Name": "Restena Foundation",
+        "Website": "https://www.restena.lu/en/service/public-dns-resolver",
+        "DOT": [
+            {
+                "name": "kaitain.restena.lu",
+                "port": 853,
+                "IP": [
+                    "158.64.1.29",
+                    "2001:a18:1::29"
+                ],
+                "key": {
+                    "SPKI": "7ftvIkA+UeN/ktVkovd/7rPZ6mbkhVI7/8HnFJIiLa4="
+                }
+            }
+        ],
+        "DOH": [
+            "https://kaitain.restena.lu/dns-query"
+        ]
+    },
+    {
+        "Name": "GetDNS",
+        "Website": "https://getdnsapi.net/",
+        "DNS": [
+            "185.49.141.37",
+            "2a04:b900:0:100::37"
+        ],
+        "DOT": [
+            {
+                "name": "getdnsapi.net",
+                "port": 853,
+                "IP": [
+                    "185.49.141.37",
+                    "2a04:b900:0:100::37"
+                ]
+            }
+        ]
+    },
+    {
+        "Name": "Yandex (Basic)",
+        "Website": "https://dns.yandex.com/",
+        "DNS": [
+            "77.88.8.8",
+            "77.88.8.1"
+        ]
+    },
+    {
+        "Name": "Yandex (Safe)",
+        "Website": "https://dns.yandex.com/",
+        "DNS": [
+            "77.88.8.88",
+            "77.88.8.2"
+        ]
+    },
+    {
+        "Name": "Yandex (Family)",
+        "Website": "https://dns.yandex.com/",
+        "DNS": [
+            "77.88.8.7",
+            "77.88.8.3"
+        ]
+    },
+    {
+        "Name": "DNS.Watch",
+        "Website": "https://dns.watch/index",
+        "DNS": [
+            "84.200.69.80",
+            "2001:1608:10:25::1c04:b12f",
+            "84.200.70.40",
+            "2001:1608:10:25::9249:d69b"
+        ],
+        "DOH": [
+            "https://resolver2.dns.watch/dns-query"
+        ]
+    },
+    {
+        "Name": "FreeDNS",
+        "Website": "https://freedns.zone/en/",
+        "DNS": [
+            "172.104.237.57",
+            "172.104.49.100",
+            "37.235.1.174",
+            "37.235.1.177",
+            "45.33.97.5"
+        ]
+    }
+]

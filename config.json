@@ -1,0 +1,9 @@
+{
+    "Log": {
+        "ReportCaller": false,
+        "Output": "console",
+        "Level": "trace"
+    },
+    "ServerList": "E:\\code\\DnsCompare\\servers.json"
+      
+}
