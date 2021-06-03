@@ -13,7 +13,9 @@
             "env": {},
             "args": [
                 "--config", "E:\\code\\DnsCompare\\config.json",
-                "-t", "heiseink.com"
+                "-t", "heiseink.com",
+                "-m", "tcp",
+                "-r", "MX"
             ]
         }
 

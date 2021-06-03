@@ -610,7 +610,7 @@
         ],
         "DOT": [
             {
-                "name": "dot1.appliced-privacy.net",
+                "name": "dot1.applied-privacy.net",
                 "port": 853,
                 "IP": [
                     "146.255.56.98",
@@ -653,7 +653,7 @@
             }
         ],
         "DOH": [
-            "https://doh.post-factum.tk:53/dns-query"
+            "https://doh.post-factum.tk/dns-query"
         ]
     },
     {

@@ -2,103 +2,48 @@ package main
 
 import (
 	"DnsCompare"
-	"fmt"
 	"os"
-	"sort"
-	"sync"
 
 	"github.com/spf13/cobra"
 	"github.com/spf13/viper"
 )
 
 var (
-	cfgFile      string
-	targetDomain string
-	parallel     bool
-	responseMap  map[string][]string
+	loglevel  string
+	logcolors bool
+	logformat string
+	logoutput string
+	logtime   string
+	logreport bool
 )
 
-var compareCmd = &cobra.Command{
-	Use:   "Compare",
-	Short: "Compare DNS results from different servers",
-	Run: func(cmd *cobra.Command, args []string) {
-		compare()
-	},
-}
+var rootCmd = &cobra.Command{}
 
 func init() {
-	responseMap = make(map[string][]string)
 	cobra.OnInitialize(initConfig)
-	compareCmd.PersistentFlags().StringVar(&cfgFile, "config", "", "config file (default is $HOME/config.json)")
 
-	compareCmd.Flags().StringVarP(&targetDomain, "target", "t", "", "Target Domain name to resolve")
-	compareCmd.MarkFlagRequired("target")
-	viper.BindPFlag("target", compareCmd.Flags().Lookup("target"))
-
-	compareCmd.Flags().BoolVarP(&parallel, "parallel", "p", false, "Query servers in parallel")
-
+	rootCmd.PersistentFlags().StringVar(&loglevel, "Log.Level", "info", "Log Level (available options: panic,fatal,error,warn,info,debug,trace)")
+	viper.BindPFlag("Log.Level", rootCmd.PersistentFlags().Lookup("Log.Level"))
+	rootCmd.PersistentFlags().BoolVar(&logcolors, "Log.Colors", true, "Use colors in logging (only valid for console logging)")
+	viper.BindPFlag("Log.Level", rootCmd.PersistentFlags().Lookup("Log.Level"))
+	rootCmd.PersistentFlags().StringVar(&logformat, "Log.Format", "info", "Log format (available options: plain, json)")
+	viper.BindPFlag("Log.Format", rootCmd.PersistentFlags().Lookup("Log.Format"))
+	rootCmd.PersistentFlags().StringVar(&logoutput, "Log.Output", "console", "Log output (available options: console, {filename})")
+	viper.BindPFlag("Log.Output", rootCmd.PersistentFlags().Lookup("Log.Output"))
+	rootCmd.PersistentFlags().StringVar(&logtime, "Log.TimeFormat", "RFC3339", "Log timestamp format (available options: ansi=ansic,unix=unixdate,ruby=rubydate,rfc822,rfc822z,rfc850,rfc1123,rfc1123z,json=rfc3339,rfc3339nano,kitchen,stamp,stampmili,stampmicro,stampnano,{golang time format string})")
+	viper.BindPFlag("Log.TimeFormat", rootCmd.PersistentFlags().Lookup("Log.TimeFormat"))
+	rootCmd.PersistentFlags().BoolVar(&logreport, "Log.ReportCaller", false, "Report the calling function to the log")
+	viper.BindPFlag("Log.ReportCaller", rootCmd.PersistentFlags().Lookup("Log.ReportCaller"))
 }
 
 func initConfig() {
-	DnsCompare.InitializeConfig(cfgFile)
-	log = DnsCompare.InitializeLogger("DNSCompare")
+	DnsCompare.InitializeConfig()
+	log = DnsCompare.InitializeLogger()
 }
 
 func Execute() {
-	if err := compareCmd.Execute(); err != nil {
+	if err := rootCmd.Execute(); err != nil {
 		log.Error().Err(err).Msg("An Unhandled Error Occured")
 		os.Exit(-1)
-	}
-}
-
-func resolveSingle(target string, server DnsCompare.DNSServer, wg *sync.WaitGroup) []string {
-	resp, err := server.ResolveUDP(targetDomain + ".")
-	if err != nil {
-		log.Error().Err(err).Msg("Error")
-	} else {
-		if resp != nil {
-			responseMap[server.Name] = resp
-			log.Info().Str("Server", server.Name).Interface("resp", resp).Msg("Response")
-			wg.Done()
-			return resp
-		}
-	}
-	wg.Done()
-	return nil
-}
-
-func compare() {
-	serverListFile := viper.GetString("ServerList")
-	servers, err := DnsCompare.ReadServers(serverListFile)
-	if err != nil {
-		log.Fatal().Err(err).Msg("Unable to read server list json file")
-	}
-
-	var wg sync.WaitGroup
-	for _, server := range servers {
-		wg.Add(1)
-		if parallel {
-			go resolveSingle(targetDomain, server, &wg)
-		} else {
-			resolveSingle(targetDomain, server, &wg)
-		}
-	}
-	wg.Wait()
-
-	//Pretty Print
-	longestName := 0
-	keys := make([]string, 0, len(responseMap))
-	for k := range responseMap {
-		keys = append(keys, k)
-		keyLength := len(k)
-		if keyLength > longestName {
-			longestName = keyLength
-		}
-	}
-	sort.Strings(keys)
-	for _, name := range keys {
-		answers := responseMap[name]
-		sort.Strings(answers)
-		fmt.Printf("%-*s %s\n", longestName, name, answers)
 	}
 }
