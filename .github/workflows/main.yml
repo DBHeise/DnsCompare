@@ -1,0 +1,2 @@
+name: build1
+on: [push]
