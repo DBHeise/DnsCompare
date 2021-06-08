@@ -29,9 +29,10 @@ jobs:
         GOARCH: ${{ matrix.goarch }}
       run: |
         if [ $GOOS = "windows" ]; then export BINARY_SUFFIX="$BINARY_SUFFIX.exe"; fi
-        export BINARY_NAME="DnsCompare-$GOOS_$GOARCH$BINARY_SUFFIX"                
+        export BINARY_NAME="DnsCompare-$GOOS_$GOARCH$BINARY_SUFFIX"    
+        export BINOUT="$PWD/output/$BINARY_NAME"            
         pushd cmd/DnsCompare
-        go build -o "$BINARY_NAME"
+        go build -o "$BINOUT"
         popd
     - name: Test
       run: go test ./...
