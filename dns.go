@@ -215,9 +215,15 @@ func chooseServerAddress(method string, list []string) []string {
 		return ans
 	case "random4":
 		all4 := chooseServerAddress("all4", list)
+		if len(all4) == 0 || all4[0] == "" {
+			return []string{}
+		}
 		return []string{RandomFromStringSlice(all4)}
 	case "random6":
 		all6 := chooseServerAddress("all6", list)
+		if len(all6) == 0 || all6[0] == "" {
+			return []string{}
+		}
 		return []string{RandomFromStringSlice(all6)}
 	case "random":
 		fallthrough
@@ -237,15 +243,22 @@ func (srv *DNSServer) ResolveUDP(domain string) ([]string, error) {
 func (srv *DNSServer) ResolveTCP(domain string) ([]string, error) {
 	log.Trace().Str("Domain", domain).Str("Name", srv.Name).Msg("Attempting TCP DNS Resolution")
 	if len(srv.DNS) > 0 {
-		return resolve(domain, "tcp://"+RandomFromStringSlice(srv.DNS), dnsRequestType)
+		serverList := chooseServerAddress(viper.GetString("PickMethod"), srv.DNS)
+		for i, srv := range serverList {
+			serverList[i] = "tcp://" + srv
+		}
+		return resolveList(domain, serverList, dnsRequestType)
 	}
 	return nil, nil
 }
 func (srv *DNSServer) ResolveDOT(domain string) ([]string, error) {
 	log.Trace().Str("Domain", domain).Str("Name", srv.Name).Msg("Attempting DoT DNS Resolution")
 	if len(srv.DOT) > 0 {
-		dot := RandomFromDOTSlice(srv.DOT)
-		return resolve(domain, "tls://"+dot.Name+":"+strconv.Itoa(int(dot.Port)), dnsRequestType)
+		serverList := make([]string, 0, len(srv.DOT))
+		for i := 0; i < len(srv.DOT); i++ {
+			serverList = append(serverList, "tls://"+srv.DOT[i].Name+":"+strconv.Itoa(int(srv.DOT[i].Port)))
+		}
+		return resolveList(domain, chooseServerAddress(viper.GetString("PickMethod"), serverList), dnsRequestType)
 	}
 	return nil, nil
 }

@@ -11,11 +11,15 @@
             "mode": "debug",
             "program": "${workspaceRoot}\\cmd\\DnsCompare",
             "env": {},
+            "cwd": "${workspaceRoot}\\cmd\\DnsCompare",
             "args": [
-                "--config", "E:\\code\\DnsCompare\\config.json",
-                "-t", "heiseink.com",
-                "-m", "tcp",
-                "-r", "MX"
+                "compare",
+                "--Log.Level", "trace",
+                "--ServerDef", "E:\\code\\DnsCompare\\servers_DEV.json",
+                "--DNSMode", "tcp",
+                "--RecordType", "cname",
+                "-k", "first",
+                "--target", "example.com"
             ]
         }
 

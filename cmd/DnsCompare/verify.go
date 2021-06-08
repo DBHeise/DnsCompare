@@ -16,14 +16,14 @@ var verifyCmd = &cobra.Command{
 }
 
 func init() {
-	rootCmd.AddCommand(verifyCmd)
 	verifyCmd.Flags().StringVarP(&targetDomain, "target", "t", "example.com", "Target Domain name to resolve")
 
-	verifyCmd.Flags().StringVarP(&serverDef, "ServerDef", "s", "", "server configuration definitions (i.e. servers.json file)")
+	verifyCmd.Flags().StringP("ServerDef", "s", "", "server configuration definitions (i.e. servers.json file)")
 	viper.BindPFlag("ServerDef", verifyCmd.Flags().Lookup("ServerDef"))
-	verifyCmd.Flags().StringVarP(&rType, "RecordType", "r", "A", "Type of Query to ask for (available options: A, AAAA, NS, CNAME, PTR, TXT, SRV, SOA, SIG)")
+	verifyCmd.Flags().StringP("RecordType", "r", "A", "Type of Query to ask for (available options: A, AAAA, NS, CNAME, PTR, TXT, SRV, SOA, SIG)")
 	viper.BindPFlag("RecordType", verifyCmd.Flags().Lookup("RecordType"))
 
+	rootCmd.AddCommand(verifyCmd)
 }
 
 func handleResults(method string, serverName string, ans []string, err error) {

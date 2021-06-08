@@ -45,59 +45,64 @@ func TestIsIPv6(t *testing.T) {
 	}
 }
 
-func TestChooseServer_Method_First(t *testing.T) {
-	testList := []string{"1.1.1.1", "1:2:3:4:5:6:7:8", "2.2.2.2", "8:7:6:5:4:3:2:1", "foobar"}
-	items := chooseServerAddress("first", testList)
-	assert.Equal(t, 1, len(items), "returned list size")
-	assert.Equal(t, "1.1.1.1", items[0])
-}
-func TestChooseServer_Method_First4(t *testing.T) {
-	testList := []string{"1:2:3:4:5:6:7:8", "1.1.1.1", "2.2.2.2", "8:7:6:5:4:3:2:1", "foobar"}
-	items := chooseServerAddress("first4", testList)
-	assert.Equal(t, 1, len(items), "returned list size")
-	assert.Equal(t, "1.1.1.1", items[0])
-}
-func TestChooseServer_Method_First6(t *testing.T) {
-	testList := []string{"1.1.1.1", "1:2:3:4:5:6:7:8", "2.2.2.2", "8:7:6:5:4:3:2:1", "foobar"}
-	items := chooseServerAddress("first6", testList)
-	assert.Equal(t, 1, len(items), "returned list size")
-	assert.Equal(t, "1:2:3:4:5:6:7:8", items[0])
-}
-func TestChooseServer_Method_All(t *testing.T) {
-	testList := []string{"1.1.1.1", "1:2:3:4:5:6:7:8", "2.2.2.2", "8:7:6:5:4:3:2:1", "foobar"}
-	items := chooseServerAddress("all", testList)
-	assert.Equal(t, 5, len(items), "returned list size")
-}
-func TestChooseServer_Method_All4(t *testing.T) {
-	testList := []string{"1.1.1.1", "1:2:3:4:5:6:7:8", "2.2.2.2", "8:7:6:5:4:3:2:1", "foobar"}
-	items := chooseServerAddress("all4", testList)
-	assert.Equal(t, 2, len(items), "returned list size")
-	for _, item := range items {
-		assert.True(t, IsIPv4(item))
-	}
-}
-func TestChooseServer_Method_All6(t *testing.T) {
-	testList := []string{"1.1.1.1", "1:2:3:4:5:6:7:8", "2.2.2.2", "8:7:6:5:4:3:2:1", "foobar"}
-	items := chooseServerAddress("all6", testList)
-	assert.Equal(t, 2, len(items), "returned list size")
-	for _, item := range items {
-		assert.True(t, IsIPv6(item))
-	}
-}
-func TestChooseServer_Method_Random(t *testing.T) {
-	testList := []string{"1.1.1.1", "1:2:3:4:5:6:7:8", "2.2.2.2", "8:7:6:5:4:3:2:1", "foobar"}
-	items := chooseServerAddress("random", testList)
-	assert.Equal(t, 1, len(items), "returned list size")
-}
-func TestChooseServer_Method_Random4(t *testing.T) {
-	testList := []string{"1:2:3:4:5:6:7:8", "1.1.1.1", "2.2.2.2", "8:7:6:5:4:3:2:1", "foobar"}
-	items := chooseServerAddress("random4", testList)
-	assert.Equal(t, 1, len(items), "returned list size")
-	assert.True(t, IsIPv4(items[0]))
-}
-func TestChooseServer_Method_Random6(t *testing.T) {
-	testList := []string{"1:2:3:4:5:6:7:8", "1.1.1.1", "2.2.2.2", "8:7:6:5:4:3:2:1", "foobar"}
-	items := chooseServerAddress("random6", testList)
-	assert.Equal(t, 1, len(items), "returned list size")
-	assert.True(t, IsIPv6(items[0]))
+func TestChooseServer(t *testing.T) {
+	t.Run("Methods", func(tt *testing.T) {
+		testList := []string{"1.1.1.1", "1:2:3:4:5:6:7:8", "2.2.2.2", "8:7:6:5:4:3:2:1", "foobar"}
+
+		tt.Run("First", func(ttt *testing.T) {
+			items := chooseServerAddress("first", testList)
+			assert.Equal(ttt, 1, len(items), "returned list size")
+			assert.Equal(ttt, "1.1.1.1", items[0])
+		})
+		tt.Run("First4", func(ttt *testing.T) {
+			items := chooseServerAddress("first4", testList)
+			assert.Equal(ttt, 1, len(items), "returned list size")
+			assert.Equal(ttt, "1.1.1.1", items[0])
+		})
+		tt.Run("First4_No4", func(ttt *testing.T) {
+			items := chooseServerAddress("first4", []string{"abc", "def", "hij"})
+			assert.Equal(ttt, 0, len(items), "returned list size")
+		})
+		tt.Run("First6", func(ttt *testing.T) {
+			items := chooseServerAddress("first6", testList)
+			assert.Equal(ttt, 1, len(items), "returned list size")
+			assert.Equal(ttt, "1:2:3:4:5:6:7:8", items[0])
+		})
+		tt.Run("All", func(ttt *testing.T) {
+			items := chooseServerAddress("all", testList)
+			assert.Equal(ttt, 5, len(items), "returned list size")
+		})
+		tt.Run("All4", func(ttt *testing.T) {
+			items := chooseServerAddress("all4", testList)
+			assert.Equal(ttt, 2, len(items), "returned list size")
+			for _, item := range items {
+				assert.True(ttt, IsIPv4(item))
+			}
+		})
+		tt.Run("All6", func(ttt *testing.T) {
+			items := chooseServerAddress("all6", testList)
+			assert.Equal(ttt, 2, len(items), "returned list size")
+			for _, item := range items {
+				assert.True(ttt, IsIPv6(item))
+			}
+		})
+		tt.Run("Random", func(ttt *testing.T) {
+			items := chooseServerAddress("random", testList)
+			assert.Equal(ttt, 1, len(items), "returned list size")
+		})
+		tt.Run("Random4", func(ttt *testing.T) {
+			items := chooseServerAddress("random4", testList)
+			assert.Equal(ttt, 1, len(items), "returned list size")
+			assert.True(ttt, IsIPv4(items[0]))
+		})
+		tt.Run("Random4_no4", func(ttt *testing.T) {
+			items := chooseServerAddress("random4", []string{"one", "two", "three"})
+			assert.Equal(ttt, 0, len(items), "returned list size")
+		})
+		tt.Run("Random6", func(ttt *testing.T) {
+			items := chooseServerAddress("random6", testList)
+			assert.Equal(ttt, 1, len(items), "returned list size")
+			assert.True(ttt, IsIPv6(items[0]))
+		})
+	})
 }

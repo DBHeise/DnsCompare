@@ -31,21 +31,16 @@ var compareCmd = &cobra.Command{
 
 func init() {
 	responseMap = make(map[string][]string)
-	rootCmd.AddCommand(compareCmd)
 
 	compareCmd.Flags().StringVarP(&targetDomain, "target", "t", "", "Target Domain name to resolve")
 	compareCmd.MarkFlagRequired("target")
 
 	compareCmd.Flags().StringVarP(&serverDef, "ServerDef", "s", "./servers.json", "server configuration definitions (i.e. servers.json file)")
-	viper.BindPFlag("ServerDef", compareCmd.Flags().Lookup("ServerDef"))
 	compareCmd.Flags().StringVarP(&mode, "DNSMode", "m", "UDP", "DNS mode to use (available options: UDP, TCP, DOT, DOH)")
-	viper.BindPFlag("DNSMode", compareCmd.Flags().Lookup("DNSMode"))
 	compareCmd.Flags().BoolVarP(&parallel, "Parallel", "p", false, "Query servers in parallel")
-	viper.BindPFlag("Parallel", compareCmd.Flags().Lookup("Parallel"))
 	compareCmd.Flags().StringVarP(&rType, "RecordType", "r", "A", "Type of Query to ask for (available options: A, AAAA, NS, CNAME, PTR, TXT, SRV, SOA, SIG)")
-	viper.BindPFlag("RecordType", compareCmd.Flags().Lookup("RecordType"))
 	compareCmd.Flags().StringVarP(&pickMethod, "PickMethod", "k", "first4", "Method to choose a server address (available options: first,random,first4,first6,random4,random6,all,all4,all6)")
-	viper.BindPFlag("PickMethod", compareCmd.Flags().Lookup("PickMethod"))
+	rootCmd.AddCommand(compareCmd)
 }
 
 func resolveSingle(target string, server DnsCompare.DNSServer, wg *sync.WaitGroup) []string {
@@ -80,6 +75,12 @@ func resolveSingle(target string, server DnsCompare.DNSServer, wg *sync.WaitGrou
 }
 
 func compare() {
+	viper.Set("ServerDef", serverDef)
+	viper.Set("DNSMode", mode)
+	viper.Set("Parallel", parallel)
+	viper.Set("RecordType", rType)
+	viper.Set("PickMethod", pickMethod)
+
 	log.Trace().Msg("Compare")
 
 	servers, err := DnsCompare.ReadServers(viper.GetString("ServerDef"))
