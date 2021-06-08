@@ -31,7 +31,7 @@ jobs:
         if [ $GOOS = "windows" ]; then export BINARY_SUFFIX="$BINARY_SUFFIX.exe"; fi
         export BINARY_NAME="DnsCompare-$GOOS_$GOARCH$BINARY_SUFFIX"                
         pushd cmd/DnsCompare
-        go build -o "$BINARY_NAME" cmd/DnsCompare
+        go build -o "$BINARY_NAME"
         popd
     - name: Test
       run: go test ./...
